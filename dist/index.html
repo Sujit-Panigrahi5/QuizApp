@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        .bgimg {
+            background-image: url(./assets/loginpageimg.jpg);
+            background-position: center;
+            background-size: cover;
+
+        }
+    </style>
+</head>
+
+<body class="w-full h-[43.39rem]">
+    <!-- Login page  -->
+
+    <div class="w-full h-full bg-[#7987C2] flex flex-row justify-center items-center ">
+
+        <div class="w-[80%] h-[90%] bgimg grid grid-cols-2 shadow-lg shadow-slate-700 rounded-r-3xl">
+            <div class="bg-slate-300 bg-opacity-75 flex flex-col justify-center items-center gap-3  rounded-r-full ">
+                <div class="flex flex-col justify-center items-left gap-3 ">
+                    <h1 class="text-3xl font-bold ">Login</h1>
+                    <span class="text-slate-700">Please enter your login details to log in</span>
+
+                    <input type="email" name="" id="" placeholder="Email Address"
+                        class=" w-72 mix-blend-multiply placeholder:text-black  p-2 required:border-red-600  border-">
+
+                    <input type="password" name="" id="" placeholder="Password "
+                        class=" w-72 mix-blend-multiply placeholder:text-black  p-2 required:border-red-600 ">
+                    <span class="hover:underline hover:cursor-pointer ml-36">Forgot password?</span>
+                    <button
+                        class="w-72  text-2xl font-bold rounded-lg  hover:text-slate-300 hover:transition-all ease-in-out delay-100 hover:bg-blue-700 py-2 bg-purple-600 bg-opacity-45  ">Log
+                        in</button>
+                    <h1> Don't have an account? <span class="text-blue-700 cursor-pointer hover:underline">Create
+                            account</span></h1>
+                </div>
+
+            </div>
+
+            <!-- right hand side  of loging page  -->
+            <div class=" flex flex-row justify-center items-center ">
+                <div
+                    class=" bg-[#686767] h-[90%] w-[70%] bg-opacity-55 flex flex-row justify-center items-center rounded-3xl ">
+                    <h1 class="text-5xl text-white">Welcome back!</h1>
+                    <img src="./assets/splogo.jpg" alt=""
+                        class="w-10 h-10 absolute right-72 top-24 mix-blend-multiply ">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    </div>
+</body>
+
+</html>
