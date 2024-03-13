@@ -16,6 +16,10 @@
 //   counter()
 //   counter()
 
+const quno = document.getElementById("quno");
+const questiono = document.getElementById("qu");
+const sumbit = document.getElementById("sumbit");
+
 class Createaccount {
   name;
   email;
@@ -155,13 +159,14 @@ let createacc = () => {
   let firstneme = document.getElementById("firstname").value;
   let lastname = document.getElementById("lastname").value;
   let name = firstneme + "" + lastname;
-  
+  let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
 
-  let newacc = new Createaccount(name, email, password);
-  map.set(email, newacc);
-
-  //  localStorage.setItem(email,newacc);
+  let  newacc = new Createaccount(name, email, password);
+  
+  // map.set(email, newacc);
+  let stringobj= JSON.stringify(newacc);
+   localStorage.setItem(email,stringobj);
   document.getElementById("loginpage").style.display = "block";
   document.getElementById("createacc").style.display = "none";
   document.getElementById("loginpage").style.display = "flex";
@@ -173,6 +178,8 @@ let createacc = () => {
   document.getElementById("check").checked = false
 
 }
+
+
 
 
 function showpassword(){
@@ -189,12 +196,40 @@ function showpassword(){
   }
 }
 
+// ****************
+//  login
+// ****************
+
+function login(){
+  let email=document.getElementById("email1").value;
+  let password=document.getElementById("password1").value;
+  if(!isemailcorrect(email)){
+    alert("Enter a valid email ");
+    document.getElementById("email1").value="";
+    return;
+  }
+
+
+  
+  const info=JSON.parse(localStorage.getItem(email));
+  
+  console.log(info);
+  if(info.password === password){
+    document.getElementById("middle").style.display="block";
+    document.getElementById("loginpage").style.display="none"
+  }else{
+    
+    document.getElementById("password1").value="";
+    alert("Enter a valid password ");
+    return;
+  }
+
+}
 
 
 
-const quno = document.getElementById("quno");
-const questiono = document.getElementById("qu");
-const sumbit = document.getElementById("sumbit");
+
+
 
 
 let questionans = new Array(10);
