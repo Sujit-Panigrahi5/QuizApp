@@ -213,7 +213,8 @@ function login(){
   
   const info=JSON.parse(localStorage.getItem(email));
   
-  console.log(info);
+  // console.log(info);
+  
   if(info.password === password){
     document.getElementById("middle").style.display="block";
     document.getElementById("loginpage").style.display="none"
@@ -225,6 +226,59 @@ function login(){
   }
 
 }
+
+// **************
+//   changepassword section 
+// ******************
+
+function forgetpassword(){
+  document.getElementById("login").style.display="none";
+  document.getElementById("forgetpassword").style.display="block";
+  
+}
+
+function changepassword(){
+  let email=document.getElementById("email2").value;
+  let password=document.getElementById("password2").value;
+  let conformpassword =document.getElementById("password3").value;
+  if(!isemailcorrect(email)){
+    alert("You should be write a valid email ");
+    document.getElementById("email2").value="";
+    return;
+  } 
+  if(!checkpassword(password)){
+    alert("Enter your valid password. Passwords should contain at least one uppercase character, one number, and one special character. ")
+    document.getElementById("password2").value="";
+    return;
+  }
+
+  if(!password===conformpassword){
+    alert("Your password should match your confirmation password.");
+    document.getElementById("password3").value="";
+    return;
+
+  }
+
+  if(!localStorage.getItem(email)){
+    alert("Please enter your registered email.");
+    document.getElementById("email2").value="";
+    return;
+  }
+
+  const info1=JSON.parse(localStorage.getItem(email));;
+  info1.password=password;// new password
+  localStorage.setItem(email,JSON.stringify(info1));
+
+  alert("Your password has changed.");
+  document.getElementById("login").style.display="block";
+  document.getElementById("forgetpassword").style.display="none";
+  document.getElementById("login").style.display="grid"
+
+}
+
+
+
+
 
 
 
