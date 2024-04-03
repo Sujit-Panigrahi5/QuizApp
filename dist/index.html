@@ -21,13 +21,28 @@
             background-size: cover;
 
         }
+
+        .sun {
+            display: block;
+        }
+
+        .moon {
+            display: none;
+        }
+
+        /* .javaq{
+
+            background-image: url(./assets/javalogo.png);
+            background-position: center;
+            
+        } */
     </style>
 </head>
 
-<body class="max-w-full  overflow-x-hidden h-[100vh]">
+<body class="max-w-full  overflow-x-hidden overflow-y-hidden h-[100vh]">
     <!-- Login page  -->
 
-    <div class="w-full h-full bg-[#7987C2] flex flex-row justify-center items-center hidden " id="loginpage">
+    <div class="w-full h-full bg-[#7987C2] flex flex-row justify-center items-center  " id="loginpage">
 
         <!-- login section  -->
         <div class="w-[80%] h-[90%] bgimg grid grid-cols-2 shadow-lg shadow-slate-700 rounded-r-3xl  " id="login">
@@ -104,19 +119,86 @@
     </div>
 
     <!-- dashbord -->
-    <div class="w-full h-full dashboardbg " id="middle">
+    <div class="w-full h-full flex flex-col justify-start items-start dashboardbg overflow-hidden hidden" id="middle">
         <!-- header section  -->
 
-        <div class=" w-full flex flex-row justify-around items-center bg-[#686767] ">
-            <img src="./assets/splogo.jpg" alt="" class="w-10 h-10   ">
+        <div class=" w-full flex flex-row justify-between items-center bg-[#686767] relative z-20 py-2">
 
+
+            <img src="./assets/splogo.jpg" alt="" class="w-10 h-10 ml-3   " id="nightmode">
+
+            <!-- <img src="./assets/lightmode.jpg" alt="" > -->
+
+            <!-- <i class="fa-solid fa-sun text-2xl sun cursor-pointer" id="sun" onclick="changemode(0)"></i> -->
+
+            <!-- <i class="fa-regular fa-moon text-2xl absolute left-[50%] moon cursor-pointer " id="moon" onclick="changemode(1)"></i> -->
+
+
+            <!-- <i class="fa-solid fa-bars  text-2xl cursor-pointer mr-2"></i> -->
+
+            <!-- <div class="w-[13rem] h-[13rem] rounded-full bg-red-500 absolute">
+                
+            </div> -->
+
+            <i class="fa-solid fa-user text-2xl cursor-pointer mr-2" onclick="directtoprofilepage()"></i>
 
 
 
         </div>
 
+        <!-- main section  -->
 
+        <div class="w-80 h-96 border-2 border-red-900 rounded-lg flex flex-col mt-4 ml-10 cursor-pointer"
+            onclick="directToquizpage()">
 
+            <div class="w-full h-[90%] rounded-t-lg ">
+                <img src="./assets/javalogo.png" alt="" class="w-full h-full rounded-t-lg">
+            </div>
+
+            <div
+                class="w-full h-[50%] font-bold bg-slate-700 text-white flex justify-center items-center text-3xl javaq hover:bg-blue-400 hover:text-black rounded-b-lg transition-all ease-in-out delay-100 cursor-pointer">
+                Java Quiz
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- profile section  -->
+
+    
+
+    <div class="flex flex-col justify-start items-start overflow-hidden mt-5 ml-3 gap-4  hidden" id="profile">
+
+        <div class="bg-slate-700 px-3 py-2 rounded-full cursor-pointer" id="backsign" onclick="gobacktodashboard()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" class="fill-slate-50  "><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/></svg>
+        </div>
+        <!-- <div class="flex flex-col justify-center items-center">
+            <h1>Update profile Picture</h1>
+            <input type="file" name="" id="selectimg" onchange="addimg()">
+            <h3>Your profile picture </h3>
+            <img src="" alt="No Profile Picture" id="uploadimg" class="w-16 h-16 rounded-full">
+        </div> -->
+        <div class="flex flex-row justify-center items-center">
+            <span class="font-bold text-xl">Name : </span>
+            <span id="name"></span>
+        </div>
+        <div class="flex flex-row justify-center items-center">
+            <span class="font-bold text-xl">Email : </span>
+            <span id="emailidd"></span>
+        </div>
+
+        <div class="flex flex-col"> 
+            <label for="bio">Bio:</label>
+            <input type="text" name="" id="bio" placeholder="bio" class="text-black">
+        </div>
+
+        <div class="flex flex-col"> 
+            <label for="decreption">Decreption:</label>
+            <input type="text" name="" id="decreption" class="text-black " placeholder="Write about you ">
+        </div>
+
+        <button class="bg-fuchsia-500 rounded-lg p-2 text-purple-900 hover:bg-fuchsia-800 hover:text-purple-500 ml-[7.5rem] my-3" id="save" onclick="addallinfo()">Save</button>
     </div>
 
     <!-- create account  -->
@@ -205,7 +287,7 @@
 
     <!-- question section  -->
 
-    <div class="w-full hidden">
+    <div class="w-full hidden" id="questionsection">
 
 
         <div
@@ -274,12 +356,12 @@
             </div>
         </div>
 
-        <div class="w-full h-[100vh] flex flex-col justify-center items-center  bg-slate-700 gap-4 hidden"
+        <!-- <div class="w-full h-[100vh] flex flex-col justify-center items-center  bg-slate-700 gap-4 hidden"
             id="lastpage">
             <span class="text-3xl text-slate-300 ">Thank You</span>
             <button class="text-center py-1 px-3 bg-purple-700 text-slate-300 rounded-lg "
                 onclick="restart()">Restart</button>
-        </div>
+        </div> -->
     </div>
 
 </body>

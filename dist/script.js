@@ -24,6 +24,10 @@ class Createaccount {
   name;
   email;
   password;
+  // img ="";
+  bio;
+  decreption;
+
 
 
   constructor(name, email, password) {
@@ -37,10 +41,10 @@ class Createaccount {
 // email validation 
 // ***************
 
-function isemailcorrect(email){
+function isemailcorrect(email) {
   let emailvalidataion = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
 
-   return email.match(emailvalidataion);
+  return email.match(emailvalidataion);
 }
 
 let map = new Map();  // map data structure has created here 
@@ -50,20 +54,20 @@ let map = new Map();  // map data structure has created here
 // **************
 
 // capital latter check 
-function checkcapital(password){
-  for(let i=0;i<password.length;i++){
-    if(password[i].charCodeAt(0) >= 65 && password[i].charCodeAt(0) <= 90){
+function checkcapital(password) {
+  for (let i = 0; i < password.length; i++) {
+    if (password[i].charCodeAt(0) >= 65 && password[i].charCodeAt(0) <= 90) {
       return true;
     }
-    
+
   }
   return false;
 }
 
 // check the , is password contains number 
-function checknumber(password){
-  for(let i=0;i<password.length;i++){
-    if(password[i]>=0){
+function checknumber(password) {
+  for (let i = 0; i < password.length; i++) {
+    if (password[i] >= 0) {
       return true;
     }
   }
@@ -72,32 +76,32 @@ function checknumber(password){
 
 // check , is password contains atlist one spacial character
 
-function checkspacialchar(password){
-  for(let i=0;i<password.length;i++){
-    if(password[i] == "@" || password[i] == "$" || password[i] == "&" || password[i] == "_" || password[i] == "-"){
+function checkspacialchar(password) {
+  for (let i = 0; i < password.length; i++) {
+    if (password[i] == "@" || password[i] == "$" || password[i] == "&" || password[i] == "_" || password[i] == "-") {
       return true;
     }
   }
   return false;
 }
 
-function checkpassword(password){
-  if(password.length <8){
+function checkpassword(password) {
+  if (password.length < 8) {
     console.log("length");
     return false;
   }
 
-  if(!checkcapital(password)){
+  if (!checkcapital(password)) {
     console.log("upper case")
     return false;
   }
 
-  if(!checknumber(password)){
+  if (!checknumber(password)) {
     console.log("number ")
     return false;
   }
 
-  if(!checkspacialchar(password)){
+  if (!checkspacialchar(password)) {
     console.log("spacialchar ")
     return false;
   }
@@ -119,19 +123,19 @@ function createaccount() {
 
 let createacc = () => {
 
-  
-  
-  // if first name and last name is empty 
-  if(document.getElementById("firstname").value == "" ||document.getElementById("lastname").value == "" ){
-      if(document.getElementById("firstname").value == "" && document.getElementById("lastname").value == ""){
-        alert("Enter your first name and last name ");
-      } else if(document.getElementById("firstname").value==""){
-        alert("Enter your first name ");
-      }else{
-        alert("Enter your last name ");
 
-      }
-      return;
+
+  // if first name and last name is empty 
+  if (document.getElementById("firstname").value == "" || document.getElementById("lastname").value == "") {
+    if (document.getElementById("firstname").value == "" && document.getElementById("lastname").value == "") {
+      alert("Enter your first name and last name ");
+    } else if (document.getElementById("firstname").value == "") {
+      alert("Enter your first name ");
+    } else {
+      alert("Enter your last name ");
+
+    }
+    return;
   }
 
 
@@ -142,14 +146,14 @@ let createacc = () => {
     return;
   }
 
-  let passwordlen=document.getElementById("password").value;
+  let passwordlen = document.getElementById("password").value;
 
-  if(!checkpassword(passwordlen)){
+  if (!checkpassword(passwordlen)) {
     alert("Enter your valid password. Passwords should contain at least one uppercase character, one number, and one special character. ")
-    document.getElementById("password").value="";
+    document.getElementById("password").value = "";
     return;
   }
- 
+
   if (document.getElementById("check").checked != true) {
     alert("Please check the term and condition check box");
     document.getElementById("check").checked = false;
@@ -162,19 +166,19 @@ let createacc = () => {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
 
-  let  newacc = new Createaccount(name, email, password);
-  
+  let newacc = new Createaccount(name, email, password);
+
   // map.set(email, newacc);
-  let stringobj= JSON.stringify(newacc);
-   localStorage.setItem(email,stringobj);
+  let stringobj = JSON.stringify(newacc);
+  localStorage.setItem(email, stringobj);
   document.getElementById("loginpage").style.display = "block";
   document.getElementById("createacc").style.display = "none";
   document.getElementById("loginpage").style.display = "flex";
 
-  document.getElementById("firstname").value="";
-  document.getElementById("lastname").value="";
-  document.getElementById("email").value="";
-  document.getElementById("password").value="";
+  document.getElementById("firstname").value = "";
+  document.getElementById("lastname").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("password").value = "";
   document.getElementById("check").checked = false
 
 }
@@ -182,45 +186,50 @@ let createacc = () => {
 
 
 
-function showpassword(){
- 
- let passwordid=document.getElementById("password");
-  if(passwordid.type==="password"){
-    passwordid.type="text";
-    document.getElementById("passwordtype").style.display="none";
-    document.getElementById("texttype").style.display="block";
-  } else{
-    passwordid.type="password";
-    document.getElementById("passwordtype").style.display="block";
-    document.getElementById("texttype").style.display="none";
+function showpassword() {
+
+  let passwordid = document.getElementById("password");
+  if (passwordid.type === "password") {
+    passwordid.type = "text";
+    document.getElementById("passwordtype").style.display = "none";
+    document.getElementById("texttype").style.display = "block";
+  } else {
+    passwordid.type = "password";
+    document.getElementById("passwordtype").style.display = "block";
+    document.getElementById("texttype").style.display = "none";
   }
 }
 
 // ****************
 //  login
 // ****************
+let emailid = "";
 
-function login(){
-  let email=document.getElementById("email1").value;
-  let password=document.getElementById("password1").value;
-  if(!isemailcorrect(email)){
+
+
+function login() {
+  let email = document.getElementById("email1").value;
+  let password = document.getElementById("password1").value;
+  if (!isemailcorrect(email)) {
     alert("Enter a valid email ");
-    document.getElementById("email1").value="";
+    document.getElementById("email1").value = "";
     return;
   }
 
 
-  
-  const info=JSON.parse(localStorage.getItem(email));
-  
+
+  const info = JSON.parse(localStorage.getItem(email));
+  emailid = email;
+
   // console.log(info);
-  
-  if(info.password === password){
-    document.getElementById("middle").style.display="block";
-    document.getElementById("loginpage").style.display="none"
-  }else{
-    
-    document.getElementById("password1").value="";
+
+  if (info.password === password) {
+    document.getElementById("middle").style.display = "block";
+    document.getElementById("loginpage").style.display = "none";
+
+  } else {
+
+    document.getElementById("password1").value = "";
     alert("Enter a valid password ");
     return;
   }
@@ -231,50 +240,118 @@ function login(){
 //   changepassword section 
 // ******************
 
-function forgetpassword(){
-  document.getElementById("login").style.display="none";
-  document.getElementById("forgetpassword").style.display="block";
-  
+function forgetpassword() {
+  document.getElementById("login").style.display = "none";
+  document.getElementById("forgetpassword").style.display = "block";
+
 }
 
-function changepassword(){
-  let email=document.getElementById("email2").value;
-  let password=document.getElementById("password2").value;
-  let conformpassword =document.getElementById("password3").value;
-  if(!isemailcorrect(email)){
+function changepassword() {
+  let email = document.getElementById("email2").value;
+  let password = document.getElementById("password2").value;
+  let conformpassword = document.getElementById("password3").value;
+  if (!isemailcorrect(email)) {
     alert("You should be write a valid email ");
-    document.getElementById("email2").value="";
+    document.getElementById("email2").value = "";
     return;
-  } 
-  if(!checkpassword(password)){
+  }
+  if (!checkpassword(password)) {
     alert("Enter your valid password. Passwords should contain at least one uppercase character, one number, and one special character. ")
-    document.getElementById("password2").value="";
+    document.getElementById("password2").value = "";
     return;
   }
 
-  if(!password===conformpassword){
+  if (!password === conformpassword) {
     alert("Your password should match your confirmation password.");
-    document.getElementById("password3").value="";
+    document.getElementById("password3").value = "";
     return;
 
   }
 
-  if(!localStorage.getItem(email)){
+  if (!localStorage.getItem(email)) {
     alert("Please enter your registered email.");
-    document.getElementById("email2").value="";
+    document.getElementById("email2").value = "";
     return;
   }
 
-  const info1=JSON.parse(localStorage.getItem(email));;
-  info1.password=password;// new password
-  localStorage.setItem(email,JSON.stringify(info1));
+  const info1 = JSON.parse(localStorage.getItem(email));;
+  info1.password = password;// new password
+  localStorage.setItem(email, JSON.stringify(info1));
 
   alert("Your password has changed.");
-  document.getElementById("login").style.display="block";
-  document.getElementById("forgetpassword").style.display="none";
-  document.getElementById("login").style.display="grid"
+  document.getElementById("login").style.display = "block";
+  document.getElementById("forgetpassword").style.display = "none";
+  document.getElementById("login").style.display = "grid"
 
 }
+
+
+// **************
+// header section 
+// *************
+
+// light mode and dark mode 
+// function changemode(no){
+//   if(no == 0){
+//     document.getElementById("sun").style.display="none";
+//     document.getElementById("moon").style.display="block";
+
+//   } else{
+//     document.getElementById("sun").style.display="block";
+//     document.getElementById("moon").style.display="none";
+//   }
+// }
+
+// directed to quiz page 
+
+function directToquizpage() {
+  document.getElementById("questionsection").style.display = "block";
+  document.getElementById("middle").style.display = "none";
+}
+
+// profile section 
+
+function addallinfo() {
+  const info2 = JSON.parse(localStorage.getItem(emailid));
+  // info2.img = document.getElementById("selectimg").value;
+
+  info2.bio = document.getElementById("bio").value;
+  info2.decreption = document.getElementById("decreption").value;
+
+  const info3 = JSON.stringify(info2);
+  localStorage.setItem(emailid, info3);
+  document.getElementById("middle").style.display = "block";
+  document.getElementById("profile").style.display = "none";
+  return;
+}
+
+function directtoprofilepage() {
+
+
+  decreption
+  const info4 = JSON.parse(localStorage.getItem(emailid));
+  document.getElementById("name").textContent = info4.name;
+  document.getElementById("emailidd").textContent = info4.email;
+  document.getElementById("bio").value = info4.bio;
+  document.getElementById("decreption").value = info4.decreption;
+  // document.getElementById("uploadimg").setAttribute("src",info4.img);
+  document.getElementById("middle").style.display = "none";
+  document.getElementById("profile").style.display = "block";
+
+  document.getElementById("profile").style.display="flex";
+}
+
+//   function addimg(){
+//     const img=new FileReader();
+//     img.onload=function(e){
+//         uploadimg.src=e.target.result
+//     }
+//     img.readAsDataURL(selectimg.files[0])
+// }
+
+
+
+
 
 
 
@@ -289,87 +366,87 @@ function changepassword(){
 let questionans = new Array(10);
 
 let question = [
-    {
-        quest: "Which of the following option leads to the portability and security of Java?",
-        option0: "Bytecode is executed by JVM",
-        option1: "The applet makes the Java code secure and portable",
-        option2: "Use of exception handling",
-        option3: "Dynamic binding between objects",
-        ans: 0
-    },
-    {
-        quest: "Which of the following is not a Java features?",
-        option0: "Dynamic",
-        option1: "Architecture Neutral",
-        option2: "Use of pointers",
-        option3: "Object-oriented",
-        ans: 2
-    },
-    {
-        quest: "The \u0021 article referred to as a",
+  {
+    quest: "Which of the following option leads to the portability and security of Java?",
+    option0: "Bytecode is executed by JVM",
+    option1: "The applet makes the Java code secure and portable",
+    option2: "Use of exception handling",
+    option3: "Dynamic binding between objects",
+    ans: 0
+  },
+  {
+    quest: "Which of the following is not a Java features?",
+    option0: "Dynamic",
+    option1: "Architecture Neutral",
+    option2: "Use of pointers",
+    option3: "Object-oriented",
+    ans: 2
+  },
+  {
+    quest: "The \u0021 article referred to as a",
 
-        option0: "Unicode escape sequence",
-        option1: "Octal escape",
-        option2: "Hexadecimal",
-        option3: "Line feed",
-        ans: 0
-    },
-    {
-        quest: "_____ is used to find and fix bugs in the Java programs.",
-        option0: "JVM",
-        option1: "JRE",
-        option2: "JDK",
-        option3: "JDB",
-        ans: 3
-    },
-    {
-        quest: "Which of the following is a valid declaration of a char?",
-        option0: "char ch = '\ utea';",
-        option1: "char ca = 'tea';",
-        option2: "char cr = \u0223;",
-        option3: "char cc = '\itea';",
-        ans: 0
-    },
-    {
-        quest: "What is the return type of the hashCode() method in the Object class?",
-        option0: "Object",
-        option1: "int",
-        option2: "long",
-        option3: "void",
-        ans: 1
-    },
-    {
-        quest: "Which of the following is a valid long literal?",
-        option0: "ABH8097",
-        option1: "L990023",
-        option2: "904423",
-        option3: "0xnf029L",
-        ans: 3
-    },
-    {
-        quest: " What does the expression float a = 35 / 0 return?",
-        option0: "0",
-        option1: "Not a Number ",
-        option2: "Infinity",
-        option3: "Run time exception ",
-        ans: 2
-    },
-    {
-        quest: "Evaluate the following Java expression, if x=3, y=5, and z=10:",
-        option0: "24",
-        option1: "23",
-        option2: "20",
-        option3: "25",
-        ans: 3
-    },
-    {
-        quest: "Which of the following tool is used to generate API documentation in HTML format from doc comments in source code?",
-        option0: "javap tool",
-        option1: "javaw command",
-        option2: "Javadoc tool",
-        option3: "javah command",
-        ans: 2
-    },
+    option0: "Unicode escape sequence",
+    option1: "Octal escape",
+    option2: "Hexadecimal",
+    option3: "Line feed",
+    ans: 0
+  },
+  {
+    quest: "_____ is used to find and fix bugs in the Java programs.",
+    option0: "JVM",
+    option1: "JRE",
+    option2: "JDK",
+    option3: "JDB",
+    ans: 3
+  },
+  {
+    quest: "Which of the following is a valid declaration of a char?",
+    option0: "char ch = '\ utea';",
+    option1: "char ca = 'tea';",
+    option2: "char cr = \u0223;",
+    option3: "char cc = '\itea';",
+    ans: 0
+  },
+  {
+    quest: "What is the return type of the hashCode() method in the Object class?",
+    option0: "Object",
+    option1: "int",
+    option2: "long",
+    option3: "void",
+    ans: 1
+  },
+  {
+    quest: "Which of the following is a valid long literal?",
+    option0: "ABH8097",
+    option1: "L990023",
+    option2: "904423",
+    option3: "0xnf029L",
+    ans: 3
+  },
+  {
+    quest: " What does the expression float a = 35 / 0 return?",
+    option0: "0",
+    option1: "Not a Number ",
+    option2: "Infinity",
+    option3: "Run time exception ",
+    ans: 2
+  },
+  {
+    quest: "Evaluate the following Java expression, if x=3, y=5, and z=10:",
+    option0: "24",
+    option1: "23",
+    option2: "20",
+    option3: "25",
+    ans: 3
+  },
+  {
+    quest: "Which of the following tool is used to generate API documentation in HTML format from doc comments in source code?",
+    option0: "javap tool",
+    option1: "javaw command",
+    option2: "Javadoc tool",
+    option3: "javah command",
+    ans: 2
+  },
 
 ]
 let store = [];
@@ -380,47 +457,47 @@ let score = 0;
 
 function changethequestion() {
 
-    questionno++;
-    questincou++;
+  questionno++;
+  questincou++;
 
-    if (questionno > 9) {
-        alert("Thank you");
-        document.getElementById("skip").style.display = "none";
-        document.getElementById("scordcard").style.display = "block";
-        document.getElementById("finalscord").textContent = score;
-        document.getElementById("questionpage").style.display = "none";
+  if (questionno > 9) {
+    alert("Thank you");
+    document.getElementById("skip").style.display = "none";
+    document.getElementById("scordcard").style.display = "block";
+    document.getElementById("finalscord").textContent = score;
+    document.getElementById("questionpage").style.display = "none";
 
-        // score 
-    } else {
-        document.getElementById("back").style.display = "block";
-        document.getElementById("quno").innerHTML = "";
-        document.getElementById(`qu`).innerHTML = "";
+    // score 
+  } else {
+    document.getElementById("back").style.display = "block";
+    document.getElementById("quno").innerHTML = "";
+    document.getElementById(`qu`).innerHTML = "";
 
-        document.getElementById("quno").textContent = questionno + 1;
-        document.getElementById(`qu`).textContent = question[questionno].quest;
-        document.getElementById(`op0`).innerHTML = "";
-        document.getElementById(`op0`).textContent = question[questionno].option0;
+    document.getElementById("quno").textContent = questionno + 1;
+    document.getElementById(`qu`).textContent = question[questionno].quest;
+    document.getElementById(`op0`).innerHTML = "";
+    document.getElementById(`op0`).textContent = question[questionno].option0;
 
-        document.getElementById(`op1`).innerHTML = "";
-        document.getElementById(`op1`).textContent = question[questionno].option1;
+    document.getElementById(`op1`).innerHTML = "";
+    document.getElementById(`op1`).textContent = question[questionno].option1;
 
-        document.getElementById(`op2`).innerHTML = "";
-        document.getElementById(`op2`).textContent = question[questionno].option2;
+    document.getElementById(`op2`).innerHTML = "";
+    document.getElementById(`op2`).textContent = question[questionno].option2;
 
-        document.getElementById(`op3`).innerHTML = "";
-        document.getElementById(`op3`).textContent = question[questionno].option0;
+    document.getElementById(`op3`).innerHTML = "";
+    document.getElementById(`op3`).textContent = question[questionno].option0;
 
-        document.getElementById("questincount").innerHTML = "";
-        document.getElementById("questincount").textContent = questincou;
-    }
+    document.getElementById("questincount").innerHTML = "";
+    document.getElementById("questincount").textContent = questincou;
+  }
 
-    for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 4; i++) {
 
-        document.getElementById(`op${i}`).style.borderWidth = "1px";
-        document.getElementById(`op${i}`).style.borderColor = "#646363";
+    document.getElementById(`op${i}`).style.borderWidth = "1px";
+    document.getElementById(`op${i}`).style.borderColor = "#646363";
 
 
-    }
+  }
 
 
 
@@ -430,111 +507,111 @@ function changethequestion() {
 
 // back question
 function backquestion() {
-    questionno--;
-    questincou--;
-    if (questionno < 0) {
+  questionno--;
+  questincou--;
+  if (questionno < 0) {
 
-        document.getElementById("skip").style.display = "block";
-        document.getElementById("sumbit").style.display = "none";
-        document.getElementById("back").style.display = "none";
-        // score 
-    } else {
-        document.getElementById("back").style.display = "block";
-        document.getElementById("quno").innerHTML = "";
-        document.getElementById(`qu`).innerHTML = "";
+    document.getElementById("skip").style.display = "block";
+    document.getElementById("sumbit").style.display = "none";
+    document.getElementById("back").style.display = "none";
+    // score 
+  } else {
+    document.getElementById("back").style.display = "block";
+    document.getElementById("quno").innerHTML = "";
+    document.getElementById(`qu`).innerHTML = "";
 
-        document.getElementById("quno").textContent = questionno + 1;
-        document.getElementById(`qu`).textContent = question[questionno].quest;
-        document.getElementById(`op0`).innerHTML = "";
-        document.getElementById(`op0`).textContent = question[questionno].option0;
+    document.getElementById("quno").textContent = questionno + 1;
+    document.getElementById(`qu`).textContent = question[questionno].quest;
+    document.getElementById(`op0`).innerHTML = "";
+    document.getElementById(`op0`).textContent = question[questionno].option0;
 
-        document.getElementById(`op1`).innerHTML = "";
-        document.getElementById(`op1`).textContent = question[questionno].option1;
+    document.getElementById(`op1`).innerHTML = "";
+    document.getElementById(`op1`).textContent = question[questionno].option1;
 
-        document.getElementById(`op2`).innerHTML = "";
-        document.getElementById(`op2`).textContent = question[questionno].option2;
+    document.getElementById(`op2`).innerHTML = "";
+    document.getElementById(`op2`).textContent = question[questionno].option2;
 
-        document.getElementById(`op3`).innerHTML = "";
-        document.getElementById(`op3`).textContent = question[questionno].option0;
+    document.getElementById(`op3`).innerHTML = "";
+    document.getElementById(`op3`).textContent = question[questionno].option0;
 
-        document.getElementById("questincount").innerHTML = "";
-        document.getElementById("questincount").textContent = questincou;
-    }
+    document.getElementById("questincount").innerHTML = "";
+    document.getElementById("questincount").textContent = questincou;
+  }
 }
 
 // choose seciton
 let chooseans = null;
 let optinchose = (optionid, no) => {
-    chooseans = no;
-    sumbit.style.display = "block";
-    for (let i = 0; i < 4; i++) {
-        if (`op${i}` == optionid) {
-            document.getElementById(`op${i}`).style.borderWidth = "2px";
-            document.getElementById(`op${i}`).style.borderColor = "black";
-        } else {
-            document.getElementById(`op${i}`).style.borderWidth = "1px";
-            document.getElementById(`op${i}`).style.borderColor = "#646363";
-        }
-
+  chooseans = no;
+  sumbit.style.display = "block";
+  for (let i = 0; i < 4; i++) {
+    if (`op${i}` == optionid) {
+      document.getElementById(`op${i}`).style.borderWidth = "2px";
+      document.getElementById(`op${i}`).style.borderColor = "black";
+    } else {
+      document.getElementById(`op${i}`).style.borderWidth = "1px";
+      document.getElementById(`op${i}`).style.borderColor = "#646363";
     }
+
+  }
 }
 
 // skip section
 function skipthisquestion() {
-    sumbit.style.display = "none";
-    chooseans = "";
-    for (let i = 0; i < 4; i++) {
-        document.getElementById(`op${i}`).style.borderWidth = "1px";
-        document.getElementById(`op${i}`).style.borderColor = "#646363";
-    }
+  sumbit.style.display = "none";
+  chooseans = "";
+  for (let i = 0; i < 4; i++) {
+    document.getElementById(`op${i}`).style.borderWidth = "1px";
+    document.getElementById(`op${i}`).style.borderColor = "#646363";
+  }
 
-    changethequestion();
+  changethequestion();
 }
 
 let store1 = new Array(10);
 // submit section 
 function check() {
-    if(chooseans!=null){
-        if (chooseans == question[questionno].ans) {
-            if (store1[questionno] != 1) {
-                document.getElementById("questincount").innerHTML = "";
-                document.getElementById("questincount").textContent = questincou;
-    
-                document.getElementById("score").innerHTML = "";
-                document.getElementById("score").textContent = ++score;
-    
-                store.push(1);
-                console.log(questionno);
-    
-                store1[questionno] = 1;
-                console.log(store1[questionno]);
-                // changethequestion();
-            }
-            changethequestion();
-    
-    
-    
-        } else {
-            // if(store[questionno] !=0){
-            //     document.getElementById("score").style.textContent=--score;
-            // } 
-    
-            if (store1[questionno] == 1) {
-    
-                score--;
-                document.getElementById("score").innerHTML = "";
-                document.getElementById("score").innerText = score;
-            }
-    
-            changethequestion();
-        }
-    } else{
-        alert("please choose any option from below 4 option");
+  if (chooseans != null) {
+    if (chooseans == question[questionno].ans) {
+      if (store1[questionno] != 1) {
+        document.getElementById("questincount").innerHTML = "";
+        document.getElementById("questincount").textContent = questincou;
+
+        document.getElementById("score").innerHTML = "";
+        document.getElementById("score").textContent = ++score;
+
+        store.push(1);
+        console.log(questionno);
+
+        store1[questionno] = 1;
+        console.log(store1[questionno]);
+        // changethequestion();
+      }
+      changethequestion();
+
+
+
+    } else {
+      // if(store[questionno] !=0){
+      //     document.getElementById("score").style.textContent=--score;
+      // } 
+
+      if (store1[questionno] == 1) {
+
+        score--;
+        document.getElementById("score").innerHTML = "";
+        document.getElementById("score").innerText = score;
+      }
+
+      changethequestion();
     }
+  } else {
+    alert("please choose any option from below 4 option");
+  }
 
-    
 
-    chooseans=null
+
+  chooseans = null
 
 
 
@@ -542,19 +619,28 @@ function check() {
 
 
 function restart() {
-    questionno = -1;
-    questincou = 0;
-    score = 0;
-    document.getElementById("score").textContent = score;
-    document.getElementById("scordcard").style.display = "none";
-    document.getElementById("lastpage").style.display = "none";
-    document.getElementById("questionpage").style.display = "block"
-    changethequestion();
+  questionno = -1;
+  questincou = 0;
+  score = 0;
+  document.getElementById("score").textContent = score;
+  document.getElementById("scordcard").style.display = "none";
+  document.getElementById("lastpage").style.display = "none";
+  document.getElementById("questionpage").style.display = "block"
+  changethequestion();
 }
 function finish() {
-    document.getElementById("scordcard").style.display = "none";
-    document.getElementById("lastpage").style.display = "block"
+  document.getElementById("scordcard").style.display = "none";
+  // document.getElementById("lastpage").style.display = "block"
+  document.getElementById("middle").style.display="block";
+  document.getElementById("questionsection").style.display="none";
 }
+
+// back sign 
+function gobacktodashboard(){
+   document.getElementById("profile").style.display="none";
+   document.getElementById("middle").style.display="block"; 
+}
+
 
 
 
